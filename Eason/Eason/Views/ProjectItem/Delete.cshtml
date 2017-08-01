@@ -1,0 +1,105 @@
+﻿@model Eason.Models.ProjectItem
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>刪除</h2>
+
+<h3>是否刪除項目?</h3>
+<div>
+    <h4>ProjectItem</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PJI_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJI_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJI_EMPNAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJI_EMPNAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJI_UAT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJI_UAT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJI_ISDONE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJI_ISDONE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJI_ISUAT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJI_ISUAT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJI_ISUT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJI_ISUT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJI_PROGRESS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJI_PROGRESS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJI_EXPECTDTTM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJI_EXPECTDTTM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJI_FINALDTTM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJI_FINALDTTM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJI_COMMENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJI_COMMENT)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("回到項目清單", "Index")
+        </div>
+    }
+</div>

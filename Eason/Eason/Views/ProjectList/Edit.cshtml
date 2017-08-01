@@ -1,0 +1,159 @@
+﻿@model Eason.Models.ProjectList
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-icon" data-background-color="purple">
+                <i class="material-icons">assignment</i>
+            </div>
+            <div class="card-content">
+                <h4 class="card-title">修改專案</h4>
+                <form>
+                    <div class="row">
+                        <div class="col-md-2 col-lg-2">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.PJT_CODE, new { @Class = "control-label" })
+                                <div>
+                                    @Html.TextBoxFor(model => model.PJT_CODE, new { @class = "form-control", placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.PJT_CODE)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.PJT_NAME, new { @Class = "control-label" })
+                                <div>
+                                    @Html.TextBoxFor(model => model.PJT_NAME, new { @class = "form-control", placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.PJT_NAME)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.PJT_TYPE)
+                                <div>
+                                    @Html.DropDownList("PJT_TYPE", (IEnumerable<SelectListItem>)ViewBag.ddlProjectType, new { @class = "selectpicker", @data_style = "select-with-transition", @data_size = "5" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.PJT_PARTICIPANTS)
+                                <div>
+                                    @Html.DropDownList("PJT_PARTICIPANTS", (IEnumerable<SelectListItem>)ViewBag.ddlParticipant, new { @class = "selectpicker", @data_style = "select-with-transition", @data_size = "5" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.PJT_CUSTOMER)
+                                <div>
+                                    @Html.DropDownList("PJT_CUSTOMER", (IEnumerable<SelectListItem>)ViewBag.ddlCustomer, new { @class = "selectpicker", @data_style = "select-with-transition", @data_size = "5" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.PJT_PROGRESS)
+                                <div>
+                                    @Html.DropDownList("PJT_PROGRESS", (IEnumerable<SelectListItem>)ViewBag.ProgressItem, new { @class = "selectpicker", @data_style = "select-with-transition", @data_size = "5" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.PJT_SDTTM)
+                                <div>
+                                    @Html.TextBoxFor(model => model.PJT_SDTTM, new { @class = "form-control", placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.PJT_SDTTM)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.PJT_EDTTM)
+                                <div>
+                                    @Html.TextBoxFor(model => model.PJT_EDTTM, new { @class = "form-control", placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.PJT_EDTTM)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.PJT_COMMENT, new { @Class = "control-label" })
+                                <div>
+                                    @Html.TextBoxFor(model => model.PJT_COMMENT, new { @class = "form-control", placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.PJT_COMMENT)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.PJT_STATUS, new { @Class = "control-label" })
+                                <div>
+                                    @Html.TextBoxFor(model => model.PJT_STATUS, new { @class = "form-control", placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.PJT_STATUS)
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="col-md-4">
+                            <div class="form-group  label-floating">
+                                @Html.LabelFor(model => model.PJT_DESCRIPTION, new { @Class = "control-label" })
+                                <div>
+                                    @Html.TextBoxFor(model => model.PJT_DESCRIPTION, new { @class = "form-control", placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.PJT_DESCRIPTION)
+                                </div>
+                            </div>
+                        </div>*@
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">確定修改</button>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+}
+
+@section scripts {
+
+    <script type="text/javascript">
+        $(function () {
+            $('#PJT_SDTTM').datetimepicker({
+                defaultDate: '@DateTime.Now.ToShortDateString()',
+                viewMode: 'days',
+                format: 'YYYY/MM/DD',
+                showTodayButton: true,
+                showClear: true,
+                showClose: true
+            });
+            $('#PJT_EDTTM').datetimepicker({
+                defaultDate: '@DateTime.Now.AddDays(14).ToShortDateString()',
+                viewMode: 'days',
+                format: 'YYYY/MM/DD',
+                showTodayButton: true,
+                showClear: true,
+                showClose: true
+            });
+        });
+    </script>
+}

@@ -1,0 +1,97 @@
+﻿@*@model Eason.Models.Customer
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Customer</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.CST_SERNO)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CST_NAME, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CST_NAME)
+                @Html.ValidationMessageFor(model => model.CST_NAME)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CST_CODE, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CST_CODE)
+                @Html.ValidationMessageFor(model => model.CST_CODE)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+
+@model Eason.Models.Customer
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header card-header-icon" data-background-color="purple">
+                <i class="material-icons">assignment</i>
+            </div>
+            <div class="card-content">
+                <h4 class="card-title">新增客戶</h4>
+                <form>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.CST_NAME, new { @Class = "control-label" })
+                                <div>
+                                    @Html.TextBoxFor(model => model.CST_NAME, new { @class = "form-control", placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.CST_NAME)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.CST_CODE, new { @Class = "control-label" })
+                                <div>
+                                    @Html.TextBoxFor(model => model.CST_CODE, new { @class = "form-control", placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.CST_CODE)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">確定新增</button>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+}

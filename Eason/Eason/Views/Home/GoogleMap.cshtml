@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "GoogleMap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section scripts{
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTVwaDSKmJm1ia2ZF6ZwrosuaHKPSdIns"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initGoogleMaps();
+    });
+</script>
+}

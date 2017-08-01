@@ -1,0 +1,187 @@
+﻿@model Eason.ViewModels.ProjectListViewModel
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header card-header-icon" data-background-color="purple">
+            <i class="material-icons">assignment</i>
+        </div>
+        <div class="card-content">
+            <h4 class="card-title">專案清單</h4>
+            <div class="toolbar">
+                <!--        Here you can write extra buttons/actions for the toolbar              -->
+                <div>
+                    @using (Html.BeginForm("Index", "ProjectList", FormMethod.Post, new { @Id = "searchForm" }))
+                    {
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label class="col-lg-3 control-label">專案名稱:</label>
+                                <div class="col-lg-4 col-md-6 col-sm-3">
+                                    @Html.TextBoxFor(model => model.SearchParameter.PJT_NAME, new { @class = "form-control", placeholder = "專案名稱" })
+                                </div>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label class="col-lg-3 control-label">負責人:</label>
+                                <div class="col-lg-4 col-md-6 col-sm-3">
+                                    @Html.DropDownListFor(model => model.SearchParameter.PJT_PARTICIPANT, Model.PJT_PARTICIPANT, "全部", new { @class = "selectpicker", @data_style = "select-with-transition", @data_size = "5" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                <label class="col-lg-3 control-label">專案類型:</label>
+                                <div class="col-lg-4 col-md-6 col-sm-3">
+                                    @Html.DropDownListFor(model => model.SearchParameter.PJT_TYPE, Model.PJT_TYPE, "全部", new { @class = "selectpicker", @data_style = "select-with-transition", @data_size = "5" })
+                                </div>
+                            </div>
+                            <div class="col-md-6 form-group">
+                                <label class="col-lg-3 control-label">客戶名稱:</label>
+                                <div class="col-lg-4 col-md-6 col-sm-3">
+                                    @Html.DropDownListFor(model => model.SearchParameter.PJT_CUSTOMER, Model.PJT_CUSTOMER, "全部", new { @class = "selectpicker", @data_style = "select-with-transition", @data_size = "5" })
+                                </div>
+                            </div>
+                        </div>
+                        <span class="clearfix"></span>
+                        <div class="row">
+                            <div class="col-md-offset-5">
+                                <input type="submit" class="btn btn-primary" value="查詢">
+                                <span></span>
+                                <input type="reset" class="btn btn-default" value="清除">
+                            </div>
+                        </div>
+                    }
+                </div>
+                
+                <button class="btn btn-primary" onclick="location.href='@Url.Action("Create", "ProjectList")';">新增專案</button>
+            </div>
+            <div class="material-datatables">
+                <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProjectList.PJT_CODE)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProjectList.PJT_NAME)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProjectList.PJT_PARTICIPANTS)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProjectList.PJT_CUSTOMER)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProjectList.PJT_PROGRESS)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProjectList.PJT_COMMENT)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProjectList.PJT_STATUS)
+                            </th>
+                            @*<th>
+                                @Html.DisplayNameFor(model => model.ProjectList.PJT_DESCRIPTION)
+                            </th>*@
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProjectList.PJT_TYPE)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProjectList.PJT_SDTTM)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ProjectList.PJT_EDTTM)
+                            </th>
+                            <th class="disabled-sorting">
+                                @*修改/刪除*@
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datatables').DataTable({
+                "ajax": {
+                    "url": "/ProjectList/LoadData",
+                    "type": "POST",
+                    "dataType": "json",
+                    "data": function (d) {
+                        d.frm_data = JSON.stringify($('#searchForm').serializeArray());
+                    }
+                    },
+                "columns": [
+                    { "data": "PJT_CODE", "autoWidth": false, "width":"10%" },
+                    {
+                        "data": "PJT_NAME", "autoWidth": false, "width":"15%",
+                        "render": function (data, type, col, meta) {
+                            if (type === 'display') {
+                                return $('<a>')
+                                   .attr('href','/ProjectItem/Index?PJT_Serno=' + col.PJT_SERNO)
+                                   .text(data)
+                                   .wrap('<div></div>')
+                                   .parent()
+                                   .html();
+                            } else {
+                                return data;
+                            }
+                        }
+                    },
+                    { "data": "PJT_PARTICIPANTS", "autoWidth": false, "width":"10%" },
+                    { "data": "PJT_CUSTOMER", "autoWidth": false,"width":"10%" },
+                    { "data": "PJT_PROGRESS", "autoWidth": false,"width":"8%" },
+                    { "data": "PJT_COMMENT", "autoWidth": false,"width":"10%" },
+                    { "data": "PJT_STATUS", "autoWidth": false,"width":"8%" },
+                    //{ "data": "PJT_DESCRIPTION", "autoWidth": false,"width":"10%" },
+                    { "data": "PJT_TYPE", "autoWidth": false,"width":"8%" },
+                    { "data": "PJT_SDTTM", "autoWidth": false,"width":"10%" },
+                    { "data": "PJT_EDTTM", "autoWidth": false,"width":"10%" },
+                    { 
+                        "data": null,"autoWidth":false,"width":"16%",
+                        "render": function (data, type, col, meta) {
+                            if (type === 'display') {
+                                return $('<a>')
+                                   .wrapInner("<i class='material-icons'>edit</i>")
+                                   .attr('href', '/ProjectList/Edit?serno=' + col.PJT_SERNO)
+                                    //.attr('href','javascript:editProject(\''+col.PJT_SERNO+'\');')
+                                   .addClass("btn btn-simple btn-warning btn-icon edit")
+                                   .wrap('<div></div>')
+                                   .parent()
+                                   .html()
+
+                                +   $('<a>')
+                                   .wrapInner("<i class='material-icons'>close</i>")
+                                   .attr('href', '/ProjectList/Delete?serno=' + col.PJT_SERNO)
+                                   .addClass("btn btn-simple btn-danger btn-icon remove")
+                                   .wrap('<div></div>')
+                                   .parent()
+                                   .html();
+                            } else {
+                                return data;
+                            }
+                        }
+                   }
+                ],
+                "sDom": "Rlfrtip",  // resizable columns
+                //"sScrollX": "100%",
+                //"sScrollXInner": "110%",
+                "pagingType": "full_numbers",
+                "lengthMenu": [
+                    [10, 25, 50, -1],
+                    [10, 25, 50, "All"]
+                ],
+                responsive: true,
+                language: {
+                    search: "_INPUT_",
+                    searchPlaceholder: "Search records",
+                }
+
+            });
+
+            $('.card .material-datatables label').addClass('form-group');
+        });
+    </script>
+}

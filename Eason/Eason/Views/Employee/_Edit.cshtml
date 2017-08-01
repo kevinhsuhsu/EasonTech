@@ -1,0 +1,75 @@
+﻿@model Eason.Models.Employee
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="col-md-6 col-lg-9 col-lg-offset-3">
+        <div class="card">
+            <div class="card-header card-header-icon" data-background-color="purple">
+                <i class="material-icons">assignment</i>
+            </div>
+            <div class="card-content">
+                <h4 class="card-title">修改人員</h4>
+                <form>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.EMP_CNAME, new { @Class = "control-label" })
+                                <div>
+                                    @Html.TextBoxFor(model => model.EMP_CNAME, new { @class = "form-control", placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.EMP_CNAME)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.EMP_NAME, new { @Class = "control-label" })
+                                <div>
+                                    @Html.TextBoxFor(model => model.EMP_NAME, new { @class = "form-control", placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.EMP_NAME)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.EMP_PASSWORD, new { @Class = "control-label" })
+                                <div>
+                                    @Html.TextBoxFor(model => model.EMP_PASSWORD, new { @class = "form-control", placeholder = "", type = "password" })
+                                    @Html.ValidationMessageFor(model => model.EMP_PASSWORD)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.EMP_TITLE)
+                                <div>
+                                    @Html.DropDownList("EMP_TITLE", (IEnumerable<SelectListItem>)ViewBag.ddlTitle, new { @class = "selectpicker", @data_style = "select-with-transition", @data_size = "5" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.EMP_EMAIL, new { @Class = "control-label" })
+                                <div>
+                                    @Html.TextBoxFor(model => model.EMP_EMAIL, new { @class = "form-control", placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.EMP_EMAIL)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">確定修改</button>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+}

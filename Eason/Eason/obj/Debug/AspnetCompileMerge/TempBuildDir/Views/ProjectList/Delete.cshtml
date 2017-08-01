@@ -1,0 +1,121 @@
+﻿@model Eason.Models.ProjectList
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>刪除專案</h2>
+
+<h3>是否刪除專案?</h3>
+<div>
+    <h4>ProjectList</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PJT_SERNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJT_SERNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJT_CODE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJT_CODE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJT_NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJT_NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJT_PARTICIPANTS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJT_PARTICIPANTS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJT_CUSTOMER)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJT_CUSTOMER)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJT_PROGRESS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJT_PROGRESS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJT_COMMENT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJT_COMMENT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJT_STATUS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJT_STATUS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJT_DESCRIPTION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJT_DESCRIPTION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJT_TYPE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJT_TYPE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJT_SDTTM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJT_SDTTM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PJT_EDTTM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PJT_EDTTM)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("回到專案清單", "Index")
+        </div>
+    }
+</div>

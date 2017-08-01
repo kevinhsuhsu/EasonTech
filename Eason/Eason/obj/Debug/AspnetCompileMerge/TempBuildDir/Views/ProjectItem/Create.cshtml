@@ -1,0 +1,143 @@
+﻿@model Eason.Models.ProjectItem
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-icon" data-background-color="purple">
+                <i class="material-icons">assignment</i>
+            </div>
+            <div class="card-content">
+                <h4 class="card-title">新增項目</h4>
+                <form>
+                    @Html.HiddenFor(model => model.PJT_SERNO)
+                    <div class="row">
+                        <div class="col-md-2 col-lg-2">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.PJI_NAME, new { @Class = "control-label" })
+                                <div>
+                                    @Html.TextBoxFor(model => model.PJI_NAME, new { @class = "form-control", placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.PJI_NAME)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.PJI_EMPNAME, new { @Class = "control-label" })
+                                <div>
+                                    @Html.DropDownList("PJI_EMPNAME", (IEnumerable<SelectListItem>)ViewBag.ddlParticipant, new { @class = "selectpicker", @data_style = "select-with-transition", @data_size = "5" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <div class="checkbox-radios">
+                                @Html.LabelFor(model => model.PJI_ISDONE)
+                                <div class="checkbox">
+                                    <label>
+                                        @Html.CheckBoxFor(model => model.PJI_ISDONE, new { @type = "checkbox", @name = "optionsCheckboxes" })
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="checkbox-radios">
+                                @Html.LabelFor(model => model.PJI_ISUAT)
+                                <div class="checkbox">
+                                    <label>
+                                        @Html.CheckBoxFor(model => model.PJI_ISUAT, new { @type = "checkbox", name = "optionsCheckboxes" })
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="checkbox-radios">
+                                @Html.LabelFor(model => model.PJI_ISUT)
+                                <div class="checkbox">
+                                    <label>
+                                        @Html.CheckBoxFor(model => model.PJI_ISUT, new { @type = "checkbox", name = "optionsCheckboxes" })
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="col-md-1">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.PJI_PROGRESS)
+                                <div>
+                                    @Html.DropDownList("PJI_PROGRESS", (IEnumerable<SelectListItem>)ViewBag.ProgressItem, new { @class = "selectpicker", @data_style = "select-with-transition", @data_size = "5" })
+                                </div>
+                            </div>
+                        </div>*@
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.PJI_EXPECTDTTM)
+                                <div>
+                                    @Html.TextBoxFor(model => model.PJI_EXPECTDTTM, new { @class = "form-control", placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.PJI_EXPECTDTTM)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.PJI_FINALDTTM)
+                                <div>
+                                    @Html.TextBoxFor(model => model.PJI_FINALDTTM, new { @class = "form-control", placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.PJI_FINALDTTM)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group label-floating">
+                                @Html.LabelFor(model => model.PJI_COMMENT, new { @Class = "control-label" })
+                                <div>
+                                    @Html.TextBoxFor(model => model.PJI_COMMENT, new { @class = "form-control", placeholder = "" })
+                                    @Html.ValidationMessageFor(model => model.PJI_COMMENT)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">確定新增</button>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#PJI_EXPECTDTTM').datetimepicker({
+                format: 'YYYY/MM/DD',
+                defaultDate: '@DateTime.Now.ToShortDateString()',
+                showTodayButton: true,
+                showClear: true,
+                showClose: true,
+            }),
+            $('#PJI_FINALDTTM').datetimepicker({
+                format: 'YYYY/MM/DD',
+                defaultDate: '@DateTime.Now.AddDays(14).ToShortDateString()',
+                showTodayButton: true,
+                showClear: true,
+                showClose: true,
+            })
+        });
+    </script>
+}
